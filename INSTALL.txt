@@ -1,3 +1,21 @@
+# To use this you need to have access to a MySQL server.
+# Connect to MySQL and run the following commands. 
+# 
+# Please CHANGE the PASSWORD in the grant line. You may 
+# also want to change the '%' to the hostname or IP of 
+# the machine wher the eb3k spider is running.
+# 
+# I also highly recommend looking at the MySQL commands
+# and understanding what they do, just so you are sure
+# that I am not doing anything neferious on your database.
+#
+# BWHAHAHAAHahahahaha
+#
+
+CREATE DATABASE eb3k;
+
+USE eb3k;
+
 CREATE TABLE `items` (
   `id` int(14) NOT NULL AUTO_INCREMENT,
   `url` varchar(255) DEFAULT NULL,
@@ -11,5 +29,5 @@ CREATE TABLE `items` (
   UNIQUE KEY `title` (`title`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-grant insert,update,delete,select on eb3k.items to 'scrapy'@'%' identified by 'super_secret_password_that_you_do_not_check_into_github';
+GRANT INSERT,UPDATE,DELETE,SELECT ON eb3k.items TO 'scrapy'@'%' identified BY 'super_secret_password_that_you_do_not_check_into_github';
 
