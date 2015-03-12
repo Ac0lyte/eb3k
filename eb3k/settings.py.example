@@ -7,6 +7,13 @@
 #
 #     http://doc.scrapy.org/en/latest/topics/settings.html
 #
+# =====================================================================
+#
+# To use this file you will need to copy it to settings.py and then 
+# relpace the MYSQL settings with valild information. Your server name, 
+# and password at the minimum.
+#
+# =====================================================================
 
 BOT_NAME = 'eb3k'
 
