@@ -1,0 +1,9 @@
+# complied python
+#============================
+.pyc
+
+# Files with passwords and
+# other sensitive data/
+#============================
+settings.py
+

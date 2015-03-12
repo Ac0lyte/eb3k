@@ -1,0 +1,27 @@
+# -*- coding: utf-8 -*-
+
+# Scrapy settings for eb3k project
+#
+# For simplicity, this file contains only the most important settings by
+# default. All the other settings are documented here:
+#
+#     http://doc.scrapy.org/en/latest/topics/settings.html
+#
+
+BOT_NAME = 'eb3k'
+
+SPIDER_MODULES = ['eb3k.spiders']
+NEWSPIDER_MODULE = 'eb3k.spiders'
+
+# Crawl responsibly by identifying yourself (and your website) on the user-agent
+USER_AGENT='ebook link scraper based on scrapy v1.0'
+
+MYSQL_HOST = 'mysql.server.example.com'
+MYSQL_USER = 'scrapy'
+MYSQL_PASS = 'super_secret_password_that_you_do_not_check_into_github'
+MYSQL_DB = 'eb3k'
+
+ITEM_PIPELINES = { 
+    'eb3k.pipelines.eb3kMySQLPipeline': 300, 
+}
+
