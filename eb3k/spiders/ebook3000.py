@@ -8,17 +8,38 @@
 
 
 import scrapy
+from scrapy.contrib.spiders import CrawlSpider, Rule
+from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
+from scrapy.selector import HtmlXPathSelector
+
 
 from eb3k.items import eb3KItem
 
-class eb3kSpider(scrapy.Spider):
+class eb3kSpider(CrawlSpider):
     name = "eb3k"
     allowed_domains = ["ebook3000.com"]
     start_urls = (
         'http://www.ebook3000.com/',
     )
 
-    def parse(self, response):
+    rules = (Rule (SgmlLinkExtractor(allow=("index_\d\.htm", ),restrict_xpaths=('//div[@class="change_page"]',))
+    , callback="parse_items", follow= True),
+    )
+
+    #def parse(self, response):
+    #    for sel in response.xpath('//div[@class="index_box"]'):
+    #        item = eb3KItem()
+    #        item['url'] = response.url.rstrip('/')
+    #        item['title'] = sel.xpath('div[2]/a/text()').extract()
+    #        item['thumb'] = sel.xpath('div[1]/a/img/@src').extract()
+    #        item['page'] = sel.xpath('div[1]/a/@href').extract()
+    #        item['image'] = ['N/A'] 
+    #        item['link'] = ['N/A']
+
+    #        yield item
+
+    def parse_items(self, response):
+        items = []
         for sel in response.xpath('//div[@class="index_box"]'):
             item = eb3KItem()
             item['url'] = response.url.rstrip('/')
@@ -28,4 +49,8 @@ class eb3kSpider(scrapy.Spider):
             item['image'] = ['N/A'] 
             item['link'] = ['N/A']
 
-            yield item
+            item['image_urls'] = sel.xpath('div[1]/a/img/@src').extract()
+            items.append(item)
+
+        return(items)
+

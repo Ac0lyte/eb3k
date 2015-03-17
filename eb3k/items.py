@@ -17,4 +17,6 @@ class eb3KItem(scrapy.Item):
     image = scrapy.Field()
     page = scrapy.Field()
     date = scrapy.Field()
+    images = scrapy.Field()
+    image_urls = scrapy.Field()
     #pass
